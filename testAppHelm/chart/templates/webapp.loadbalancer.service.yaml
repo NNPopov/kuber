@@ -9,7 +9,7 @@ spec:
     app: {{ .Chart.Name }}-web
   ports:
     - name: "80"
-      port: 32150
+      port: {{ .Values.web-port }}
       targetPort: 8080
       # nodePort: 8080
 {{- end -}}         
