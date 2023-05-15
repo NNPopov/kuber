@@ -28,7 +28,7 @@ spec:
                 -   name: "ASPNETCORE_URLS"
                     value: http://+:8080
                 -   name: ConnectionStrings__DBConnectionString
-                    value: "Server={{ .Values.app-name }};Database=testDB;Username=testUser;Password=testPassword1"    
+                    value: "Server={{ .Values.appname }};Database=testDB;Username=testUser;Password=testPassword1"    
                 resources:
                     limits:
                         memory: "128Mi"
