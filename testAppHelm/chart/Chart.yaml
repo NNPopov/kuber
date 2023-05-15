@@ -1,4 +1,4 @@
 apiVersion: v1
-description: postgres Local
-name: postgres-locals
+description: Local test
+name: locals-test
 version: 1.0.1

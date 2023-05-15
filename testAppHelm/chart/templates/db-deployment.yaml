@@ -4,23 +4,23 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   # The name of the Deployment
-  name: {{ .Chart.Name }}
+  name: {{ .Values.app-name }}
 spec:
   # Replicas for this Deployment
   replicas: 1
   selector:
     # labels the pods
     matchLabels:
-      app: {{ .Chart.Name }}
+      app: {{ .Values.app-name }}
   template:
     metadata:
       labels:
         # The label the pods created from the pod template should have
-        app: {{ .Chart.Name }}
+        app: {{ .Values.app-name }}
     spec:
       containers:
         # The container name to execute pods
-        - name: {{ .Chart.Name }}
+        - name: {{ .Values.app-name }}
           # pull postgresimage from docker hub
           image: postgres
           imagePullPolicy: "IfNotPresent"
@@ -31,14 +31,14 @@ spec:
             # Load the environment variables/PostgresSQL credentials
             - configMapRef:
                 # This should be the ConfigMap name created ealier
-                name: {{ .Chart.Name }}-secret-credentials
+                name: {{ .Values.app-name }}-secret-credentials
           volumeMounts:
             # The volume mounts  for the container
             - mountPath: /var/lib/postgres/data
-              name: {{ .Chart.Name }}-data
+              name: {{ .Values.app-name }}-data
       # Volumes attached to the pod
       volumes:
-        - name: {{ .Chart.Name }}-data
+        - name: {{ .Values.app-name }}-data
           persistentVolumeClaim:
             # reference the PersistentVolumeClaim
-            claimName: {{ .Chart.Name }}-persistent-volume-claim            
+            claimName: {{ .Values.app-name }}-persistent-volume-claim            

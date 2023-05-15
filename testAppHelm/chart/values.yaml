@@ -1,4 +1,5 @@
-port: 32436
-webport: 32150
+app-name: locals-test
+port: 32437
+webport: 32151
 webapp:
   enabled: true

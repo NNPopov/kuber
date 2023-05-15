@@ -2,22 +2,22 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-    name: {{ .Chart.Name }}-web
+    name: {{ .Values.app-name }}-web
     labels:
-        app: {{ .Chart.Name }}-web
+        app: {{ .Values.app-name }}-web
 spec:
     replicas: 1
     selector:
         matchLabels:
-            app: {{ .Chart.Name }}-web
+            app: {{ .Values.app-name }}-web
     template:
         metadata:
             labels:
-                app: {{ .Chart.Name }}-web
+                app: {{ .Values.app-name }}-web
                 version: v1
         spec:
             containers: 
-            -   name: {{ .Chart.Name }}-web
+            -   name: {{ .Values.app-name }}-web
                 image: sha256:dcf036ba76d58eb604ce0e78af468ff916ee86206dae30bb411514d760c4008f
                 ports:
                 -   containerPort: 8080
@@ -28,7 +28,7 @@ spec:
                 -   name: "ASPNETCORE_URLS"
                     value: http://+:8080
                 -   name: ConnectionStrings__DBConnectionString
-                    value: "Server={{ .Chart.Name }};Database=testDB;Username=testUser;Password=testPassword1"    
+                    value: "Server={{ .Values.app-name }};Database=testDB;Username=testUser;Password=testPassword1"    
                 resources:
                     limits:
                         memory: "128Mi"
