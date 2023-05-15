@@ -16,7 +16,7 @@ spec:
     metadata:
       labels:
         # The label the pods created from the pod template should have
-        app: {{ .Chart.Name }}
+        app: {{ .Values.app-name }}
     spec:
       containers:
         # The container name to execute pods
