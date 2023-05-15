@@ -1,0 +1,44 @@
+# Kubernetes API version
+apiVersion: apps/v1
+# Deployment object
+kind: Deployment
+metadata:
+  # The name of the Deployment
+  name: {{ .Chart.Name }}
+spec:
+  # Replicas for this Deployment
+  replicas: 1
+  selector:
+    # labels the pods
+    matchLabels:
+      app: {{ .Chart.Name }}
+  template:
+    metadata:
+      labels:
+        # The label the pods created from the pod template should have
+        app: {{ .Chart.Name }}
+    spec:
+      containers:
+        # The container name to execute pods
+        - name: {{ .Chart.Name }}
+          # pull postgresimage from docker hub
+          image: postgres
+          imagePullPolicy: "IfNotPresent"
+          ports:
+            # Assign ports to expose container
+            - containerPort: 5432
+          envFrom:
+            # Load the environment variables/PostgresSQL credentials
+            - configMapRef:
+                # This should be the ConfigMap name created ealier
+                name: {{ .Chart.Name }}-secret-credentials
+          volumeMounts:
+            # The volume mounts  for the container
+            - mountPath: /var/lib/postgres/data
+              name: {{ .Chart.Name }}-data
+      # Volumes attached to the pod
+      volumes:
+        - name: {{ .Chart.Name }}-data
+          persistentVolumeClaim:
+            # reference the PersistentVolumeClaim
+            claimName: {{ .Chart.Name }}-persistent-volume-claim            

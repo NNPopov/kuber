@@ -1,1 +1,3 @@
 port: 32435
+webapp:
+  enabled: true

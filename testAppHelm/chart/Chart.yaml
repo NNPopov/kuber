@@ -1,4 +1,4 @@
 apiVersion: v1
-description: test app Local
-name: test-app
+description: postgres Local
+name: postgres-locals
 version: 1.0.0

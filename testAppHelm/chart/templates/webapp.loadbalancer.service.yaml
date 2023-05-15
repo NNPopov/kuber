@@ -1,13 +1,15 @@
+{{- if .Values.webapp.enabled -}}
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ .Chart.Name }}-loadbalancer
+  name: {{ .Chart.Name }}-web-loadbalancer
 spec:
   type: LoadBalancer
   selector:
-    app: {{ .Chart.Name }}
+    app: {{ .Chart.Name }}-web
   ports:
     - name: "80"
       port: 32150
       targetPort: 8080
       # nodePort: 8080
+{{- end -}}         

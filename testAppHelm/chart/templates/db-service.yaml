@@ -1,0 +1,21 @@
+apiVersion: v1
+# Kind for service
+kind: Service
+metadata:
+  # Name your service
+  name: {{ .Chart.Name }}
+  labels:
+    app: {{ .Chart.Name }}
+spec:
+  # Choose how to expose your service
+  type: NodePort
+  ports:
+    # The port number to expose the service
+    - port: 5432
+      targetPort: 5432
+      nodePort: {{ .Values.port }}
+      protocol: TCP 
+
+  # Pod to route service traffic  
+  selector:
+    app: {{ .Chart.Name }}

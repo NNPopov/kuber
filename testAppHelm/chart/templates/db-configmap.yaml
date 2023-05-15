@@ -1,0 +1,15 @@
+apiVersion: v1
+# Kind for kubernets ConfigMap
+kind: ConfigMap
+metadata:
+  # Name your ConfigMap
+  name: {{ .Chart.Name }}-secret-credentials
+  labels:
+    app: {{ .Chart.Name }}
+data:
+  # User DB
+  POSTGRES_DB: testDB
+  # Db user
+  POSTGRES_USER: testUser
+  # Db password
+  POSTGRES_PASSWORD: testPassword1
