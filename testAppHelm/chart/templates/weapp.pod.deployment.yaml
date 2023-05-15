@@ -2,22 +2,22 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-    name: {{ .Values.app-name }}-web
+    name: {{ .Values.appname }}-web
     labels:
-        app: {{ .Values.app-name }}-web
+        app: {{ .Values.appname }}-web
 spec:
     replicas: 1
     selector:
         matchLabels:
-            app: {{ .Values.app-name }}-web
+            app: {{ .Values.appname }}-web
     template:
         metadata:
             labels:
-                app: {{ .Values.app-name }}-web
+                app: {{ .Values.appname }}-web
                 version: v1
         spec:
             containers: 
-            -   name: {{ .Values.app-name }}-web
+            -   name: {{ .Values.appname }}-web
                 image: sha256:dcf036ba76d58eb604ce0e78af468ff916ee86206dae30bb411514d760c4008f
                 ports:
                 -   containerPort: 8080

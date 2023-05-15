@@ -3,9 +3,9 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   # Name your ConfigMap
-  name: {{ .Values.app-name }}-secret-credentials
+  name: {{ .Values.appname }}-secret-credentials
   labels:
-    app: {{ .Values.app-name }}
+    app: {{ .Values.appname }}
 data:
   # User DB
   POSTGRES_DB: testDB
