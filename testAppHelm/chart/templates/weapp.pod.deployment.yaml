@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: {{ .Chart.Name }}
+    labels:
+        app: {{ .Chart.Name }}
+spec:
+    replicas: 1
+    selector:
+        matchLabels:
+            app: {{ .Chart.Name }}
+    template:
+        metadata:
+            labels:
+                app: {{ .Chart.Name }}
+                version: v1
+        spec:
+            containers: 
+            -   name: {{ .Chart.Name }}
+                image: sha256:dcf036ba76d58eb604ce0e78af468ff916ee86206dae30bb411514d760c4008f
+                ports:
+                -   containerPort: 8080
+                    protocol: TCP
+                env:
+                -   name: "ASPNETCORE_ENVIRONMENT"
+                    value: "Development"
+                -   name: "ASPNETCORE_URLS"
+                    value: http://+:8080     
+                resources:
+                    limits:
+                        memory: "128Mi"
+                        cpu: "100m"
