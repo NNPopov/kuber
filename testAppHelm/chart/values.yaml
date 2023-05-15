@@ -1,4 +1,4 @@
 port: 32436
-web-port: 32150
+webport: 32150
 webapp:
   enabled: true
